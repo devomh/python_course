@@ -1,0 +1,875 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Listas &#8212; Introducción a Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/chapter4';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Diccionarios" href="chapter5.html" />
+    <link rel="prev" title="Cadenas de caracteres" href="chapter3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Introducción a Python - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Introducción a Python - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Bienvenidos a Introducción a Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">Estructuras iterativas (ciclos)</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapter2.html">Estructuras iterativas (ciclos)</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">Cadenas de caracteres</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Listas</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapter5.html">Diccionarios</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontent/chapter4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/chapter4.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Listas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Listas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-comparacion">Operadores de comparación</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-y-metodos-de-listas">Funciones y métodos de listas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#procesado-de-listas">Procesado de listas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#de-cadenas-a-listas">De cadenas a listas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#de-listas-a-cadenas">De listas a cadenas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-listas-por-comprension">Creación de listas por comprensión</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejemplo:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-listas-por-comprension-con-if">Creación de listas por comprensión con <code class="docutils literal notranslate"><span class="pre">if</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejemplo:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-listas">Lectura de listas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="listas">
+<h1>Listas<a class="headerlink" href="#listas" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Una lista es un objeto que contiene una colección de objetos que pueden tener distintos tipos de datos (heterogénea).</p></li>
+<li><p>Representa una sucesión de datos.</p></li>
+<li><p>Es similar a una cadena, excepto que la cadena contiene solo caracteres.</p></li>
+<li><p>Una lista se crea encerrando los elementos (separados por comas) entre corchetes.</p></li>
+<li><p>Los elementos de una lista se acceden usando índices.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A = [2, 4, -1, 5, 7]  # Creación de lista
+
+print(A)              # Imprimir toda la lista   
+print(A[1])           # Imprimir el segundo elemento
+
+A[0]=10               # Cambiar el valor del primer elemento
+print(A[0])           # Imprimir el primer elemento
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>B = [5, &#39;Peter&#39;, [2,-3], 8.3]
+
+print( B[1] )
+print( type(B[1]) )
+
+print( B[2] )
+print( type(B[2]) )
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="operadores">
+<h1>Operadores<a class="headerlink" href="#operadores" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Concatenación: <code class="docutils literal notranslate"><span class="pre">&lt;list&gt;</span> <span class="pre">+</span> <span class="pre">&lt;list&gt;</span></code>. Une dos listas para formar una tercera.</p></li>
+<li><p>Repetición: <code class="docutils literal notranslate"><span class="pre">&lt;list&gt;</span> <span class="pre">*</span> <span class="pre">&lt;int&gt;</span></code>. Repite la lista una cantidad de veces.</p></li>
+<li><p>Pertenencia: <code class="docutils literal notranslate"><span class="pre">&lt;element&gt;</span> <span class="pre">in</span> <span class="pre">&lt;list&gt;</span></code>. Determina si un valor pertenece a una lista</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>numeros = [1,2,3] + [5,7,9]
+print(numeros)
+
+mas_numeros = numeros * 3
+print(mas_numeros)
+
+print(7 in numeros)
+print(10 in mas_numeros)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="operadores-de-comparacion">
+<h1>Operadores de comparación<a class="headerlink" href="#operadores-de-comparacion" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Igualdad: <code class="docutils literal notranslate"><span class="pre">==</span></code></p></li>
+<li><p>No igualdad: <code class="docutils literal notranslate"><span class="pre">!=</span></code></p></li>
+<li><p>Orden lexicográfico (como en un diccionario): <code class="docutils literal notranslate"><span class="pre">&lt;,</span> <span class="pre">&lt;=,</span> <span class="pre">&gt;,</span> <span class="pre">&gt;=</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>a = [1,2,3]
+b = [1,2,3,4]
+c = [1,0,3]
+
+if a == b:
+  print(a, &#39;es igual a&#39;, b)
+
+if a != c:
+  print(a, &#39;no es igual a&#39;, c)
+
+if a &lt; b:
+  print(a, &#39;va primero que&#39;, c)
+
+if a &gt; c:
+  print(c, &#39;va primero que&#39;, a)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="funciones-y-metodos-de-listas">
+<h1>Funciones y métodos de listas<a class="headerlink" href="#funciones-y-metodos-de-listas" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Longitud de lista (cantidad de elementos): <code class="docutils literal notranslate"><span class="pre">len(list)</span></code></p></li>
+<li><p>Conteo de ocurrencias: <code class="docutils literal notranslate"><span class="pre">list.count(element)</span></code><br />
+Significado: cuantas veces aparece <code class="docutils literal notranslate"><span class="pre">element</span></code> en <code class="docutils literal notranslate"><span class="pre">list</span></code>.</p></li>
+<li><p>Buscar posición: <code class="docutils literal notranslate"><span class="pre">list.index(element</span> <span class="pre">[,</span> <span class="pre">start</span> <span class="pre">[,</span> <span class="pre">end</span> <span class="pre">]])</span></code><br />
+Significado: buscar posición donde <code class="docutils literal notranslate"><span class="pre">element</span></code> aparece en <code class="docutils literal notranslate"><span class="pre">list</span></code></p></li>
+<li><p>Agregar elemento: <code class="docutils literal notranslate"><span class="pre">list.append(element)</span></code><br />
+Significado: agrega <code class="docutils literal notranslate"><span class="pre">element</span></code> al final de <code class="docutils literal notranslate"><span class="pre">list</span></code></p></li>
+<li><p>Eliminar elemento: <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">list[index]</span></code><br />
+Significado: eliminar de <code class="docutils literal notranslate"><span class="pre">list</span></code> elemento en <code class="docutils literal notranslate"><span class="pre">index</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>notas = [90, 80, 75, 100, 68, 82, 93, 90, 75, 90]
+
+print( len(notas) )
+print( notas.count(90))
+print( notas.index(75))
+
+notas.append(65)
+del notas[2]
+
+print( notas )
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="procesado-de-listas">
+<h1>Procesado de listas<a class="headerlink" href="#procesado-de-listas" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Una lista es un iterable que puede ser usado en una instrucción <code class="docutils literal notranslate"><span class="pre">for</span></code></p></li>
+</ul>
+<section id="ejemplo">
+<h2>Ejemplo<a class="headerlink" href="#ejemplo" title="Link to this heading">#</a></h2>
+<p>Encontrar la suma de la variable <code class="docutils literal notranslate"><span class="pre">edades</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>edades = [45, 33, 55, 30, 25, 33, 25, 40]
+
+suma = 0
+
+for e in edades:
+  suma += e
+
+print(&#39;La suma de: {}\nEs: {}&#39;.format(edades,suma))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="de-cadenas-a-listas">
+<h1>De cadenas a listas<a class="headerlink" href="#de-cadenas-a-listas" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">str.split(</span> <span class="pre">[sep[,</span> <span class="pre">maxsplit]</span> <span class="pre">)</span></code>: devuelve una lista cuyos elementos son subcadenas de <code class="docutils literal notranslate"><span class="pre">str</span></code> después de haberlas separado considerando <code class="docutils literal notranslate"><span class="pre">sep</span></code> (si se omite considera espacios en blanco).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>frase = &#39;El día está nublado. No sé si lloverá. Está lloviznando. Debo buscar refugio.&#39;
+
+print( frase.split() )
+print( frase.split(&#39;.&#39;) )
+print( frase.split(&#39; &#39;,5) )
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="de-listas-a-cadenas">
+<h1>De listas a cadenas<a class="headerlink" href="#de-listas-a-cadenas" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">str.join(list)</span></code>: une los elementos de una <strong>lista de cadenas</strong>, considerando el separador <code class="docutils literal notranslate"><span class="pre">str</span></code>, para producir una nueva cadena.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>palabras = frase.split()
+
+print( &#39;-&gt;&#39;.join(palabras) )
+print( &#39; - &#39;.join(palabras) )
+print( &#39;&#39;.join(palabras) )
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="creacion-de-listas-por-comprension">
+<h1>Creación de listas por comprensión<a class="headerlink" href="#creacion-de-listas-por-comprension" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Sirve para construir listas de una forma compacta</p></li>
+<li><p>Sintaxis:<br />
+<code class="docutils literal notranslate"><span class="pre">[&lt;expr&gt;</span> <span class="pre">for</span> <span class="pre">&lt;variable&gt;</span> <span class="pre">in</span> <span class="pre">&lt;iterable&gt;]</span></code><br />
+Donde <code class="docutils literal notranslate"><span class="pre">&lt;expr&gt;</span></code> es una expresión (fórmula) que produce un resultado.</p></li>
+</ul>
+<section id="id1">
+<h2>Ejemplo:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Crear una lista con los cuadrados de los <span class="math notranslate nohighlight">\(n\)</span> primeros naturales. El programa pedirá como entrada el valor de <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>n = int( input(&#39;Ingrese n:&#39;) )
+
+cuadrados = [(i+1)**2 for i in range(n)]
+
+print(cuadrados)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="creacion-de-listas-por-comprension-con-if">
+<h1>Creación de listas por comprensión con <code class="docutils literal notranslate"><span class="pre">if</span></code><a class="headerlink" href="#creacion-de-listas-por-comprension-con-if" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Sintaxis:<br />
+<code class="docutils literal notranslate"><span class="pre">[&lt;expr&gt;</span> <span class="pre">for</span> <span class="pre">&lt;variable&gt;</span> <span class="pre">in</span> <span class="pre">&lt;iterable&gt;</span> <span class="pre">if</span> <span class="pre">&lt;condicion&gt;]</span></code><br />
+Donde <code class="docutils literal notranslate"><span class="pre">&lt;expr&gt;</span></code> es una expresión (fórmula) que produce un resultado.</p></li>
+</ul>
+<section id="id2">
+<h2>Ejemplo:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>A partir de una lista de edades, crear una nueva lista que solo contenga edades entre los 35 y 45 años de edad.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>edades = [45, 33, 55, 30, 25, 33, 25, 40]
+
+intervalo = [e for e in edades if e&gt;=35 and e&lt;=45]
+
+print(intervalo)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="ejercicios">
+<h1>Ejercicios<a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h1>
+<p>Determine el resultado de las siguientes listas por comprensión:</p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">mayoria</span> <span class="pre">=</span> <span class="pre">[e-21</span> <span class="pre">for</span> <span class="pre">e</span> <span class="pre">in</span> <span class="pre">edades]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">seleccionados</span> <span class="pre">=</span> <span class="pre">[e</span> <span class="pre">for</span> <span class="pre">e</span> <span class="pre">in</span> <span class="pre">edades</span> <span class="pre">if</span> <span class="pre">e%2==0</span> <span class="pre">]</span></code></p></li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>cadena = ‘A, B; C: D.’
+punt = [ ‘.’, ‘,’, ‘:’, ‘;’ ]
+resultado = [c for c in cadena if c not in punt]</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. ```python
+cadena = &#39;aaa bbbb cc d eeeeee&#39;
+longitudes = [len(p) for p in cadena.split()]
+</pre></div>
+</div>
+<p>Construya las siguientes listas por comprensión:</p>
+<ol class="arabic simple" start="4">
+<li><p>Enteros divisibles por 11 entre 0 y 500.</p></li>
+<li><p>Los enteros entre 1 y 100 que tienen al menos un dígito 3</p></li>
+<li><p>Edades actuales en base a una lista de años de nacimiento.<br />
+<code class="docutils literal notranslate"><span class="pre">nacimientos</span> <span class="pre">=</span> <span class="pre">[1985,</span> <span class="pre">1992,</span> <span class="pre">2000,</span> <span class="pre">1995,</span> <span class="pre">1990,</span> <span class="pre">2005,</span> <span class="pre">1998]</span></code></p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="lectura-de-listas">
+<h1>Lectura de listas<a class="headerlink" href="#lectura-de-listas" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Para leer una lista ingresada por el usuario desde el teclado, considerar las siguientes estrategias:</p>
+<ol class="arabic simple">
+<li><p>Leer uno por uno los elementos e irlos agregando ausando el método <code class="docutils literal notranslate"><span class="pre">list.append()</span></code></p></li>
+<li><p>Leer toda la lista como una sola cadena, donde los elementos estarán separados por algún caracter especial (espacios o comas). Luego aplicar el método <code class="docutils literal notranslate"><span class="pre">str.split()</span></code> y usar el resultado en una lista por comprensión.</p></li>
+</ol>
+</li>
+</ul>
+<p>Nota: Una instrucción como <code class="docutils literal notranslate"><span class="pre">resultado</span> <span class="pre">=</span> <span class="pre">list(input('Ingrese</span> <span class="pre">lista:'))</span></code> solo creará una lista de caracteres.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>n = int( input(&#39;Cantidad de elementos: &#39;) )
+
+resultado = []  # Lista vacía (sin elementos)
+
+for i in range(n):
+  elemento = int( input(&#39;Valor: &#39;) )
+  resultado.append(elemento)
+
+print(resultado)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cadena = input(&#39;Ingrese las notas separadas por comas: &#39;)
+
+print(cadena.split(&#39;,&#39;))
+
+resultado = [int(e) for e in cadena.split(&#39;,&#39;)]
+
+print(resultado)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="referencias">
+<h1>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h1>
+<p>Parte del contenido de este documento está basado en:</p>
+<ul class="simple">
+<li><p>Andrés Marzal, Isabel Gracia, Pedro García. (2014).
+Introducción a la programación con Python 3, Primera
+Edición. Publicacions de la Universitat Jaume I. Servei de Comunicació i Publicacions.</p></li>
+<li><p>Sotero Esteva, J. O. (2020). Introducción a las Computadoras. Manuscrito sin publicar. Universidad de Puerto Rico en Humacao, Puerto Rico.</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Cadenas de caracteres</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chapter5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Diccionarios</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Listas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores">Operadores</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-comparacion">Operadores de comparación</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-y-metodos-de-listas">Funciones y métodos de listas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#procesado-de-listas">Procesado de listas</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#de-cadenas-a-listas">De cadenas a listas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#de-listas-a-cadenas">De listas a cadenas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-listas-por-comprension">Creación de listas por comprensión</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejemplo:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-listas-por-comprension-con-if">Creación de listas por comprensión con <code class="docutils literal notranslate"><span class="pre">if</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejemplo:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lectura-de-listas">Lectura de listas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By OMH
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
