@@ -7,6 +7,9 @@ logo: logo.png
 description: "Una introducción a Python"
 copyright: "2024"
 
+theme:
+  name: "sphinx_book_theme"
+
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
